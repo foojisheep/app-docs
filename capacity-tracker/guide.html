@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User guide · Capacity Tracker for Jira</title>
+<meta name="description" content="User guide for Capacity Tracker for Jira, by Foooverse.">
+<style>
+:root {
+  --bg: #f7f8fc; --surface: #fff; --text: #1f2430; --muted: #626a7a;
+  --line: #e4e7ee; --line-soft: #edf0f5; --brand: #6d5dfb; --link: #5b4be0;
+  --code-bg: #f1f3f8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.65 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  background: var(--surface); border-bottom: 1px solid var(--line);
+  padding: 18px 24px; position: sticky; top: 0; z-index: 2;
+}
+header .in, main { max-width: 760px; margin: 0 auto; }
+header .in { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+/* The app is what a visitor arrived for; the publisher is context. Reversing
+   that — a big brand over a small app name — is the classic mistake on a
+   one-app vendor site, and it makes the page look like it belongs to someone
+   who has more products than they do. */
+.brand { display: flex; flex-direction: column; gap: 1px; text-decoration: none; line-height: 1.2; }
+.brand-app { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); }
+.brand-org { font-size: 11.5px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+.brand-org em { font-style: normal; color: var(--brand); }
+nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+nav a:hover, nav a[aria-current] { color: var(--link); }
+nav { display: flex; gap: 16px; margin-left: auto; }
+main { padding: 40px 24px 80px; }
+h1 { font-size: 30px; letter-spacing: -0.7px; margin: 0 0 8px; }
+h2 { font-size: 20px; letter-spacing: -0.3px; margin: 40px 0 10px; }
+h3 { font-size: 16px; margin: 28px 0 8px; }
+p, li { color: #2d3444; }
+a { color: var(--link); }
+code {
+  background: var(--code-bg); padding: 2px 5px; border-radius: 4px;
+  font: 13.5px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+pre {
+  background: var(--code-bg); padding: 14px 16px; border-radius: 8px;
+  overflow-x: auto; border: 1px solid var(--line);
+}
+pre code { background: none; padding: 0; font-size: 13px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; margin: 16px 0; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line-soft); }
+th { color: var(--muted); font-size: 12.5px; font-weight: 650; border-bottom: 1px solid var(--line); }
+blockquote {
+  margin: 18px 0; padding: 2px 18px; border-left: 3px solid var(--brand);
+  background: var(--surface); border-radius: 0 8px 8px 0;
+}
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 22px 24px; margin: 22px 0;
+}
+.lede { font-size: 18px; color: var(--muted); }
+footer {
+  border-top: 1px solid var(--line); padding: 26px 24px; color: var(--muted);
+  font-size: 13.5px; text-align: center;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111318; --surface: #1a1d24; --text: #f4f5f7; --muted: #a5a9b5;
+    --line: #2a2e38; --line-soft: #22262f; --brand: #8b7cff; --link: #a69bff;
+    --code-bg: #171a20;
+  }
+  p, li { color: #dcdee5; }
+}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <a class="brand" href="./" aria-label="Capacity Tracker for Jira by Foooverse">
+    <span class="brand-app">Capacity Tracker</span>
+    <span class="brand-org">fooo<em>verse</em></span>
+  </a>
+  <nav>
+    <a href="./docs.html">Documentation</a>
+    <a href="./guide.html" aria-current="page">User guide</a>
+    <a href="./support.html">Support</a>
+    <a href="./security.html">Security</a>
+    <a href="./privacy.html">Privacy policy</a>
+  </nav>
+</div></header>
+<main>
+<h1>User guide</h1>
+<p>For the people using it, not the people building it. If you're setting it up, start at <strong>First five minutes</strong>. If someone already set it up and you just want to read the numbers, skip to <strong>The overview page</strong>.</p>
+<hr>
+<h2>What this is for</h2>
+<p>Jira knows what work is in your sprint. It doesn't know that two people are on leave, that one is only with you three days a week, and that your tech lead never actually picks up tickets. So its board implies a team that doesn't exist.</p>
+<p>This app puts those facts back in, then answers one question in words: <strong>is this sprint going to land?</strong></p>
+<hr>
+<h2>First five minutes</h2>
+<p>Open <strong>Apps → Capacity Tracker</strong>, or the <strong>Capacity</strong> tab inside a project.</p>
+<h3>1. Check the estimation field</h3>
+<p>Go to <strong>Settings</strong>. The app guesses which field you estimate in — usually <em>Story Points</em>.</p>
+<p>If the numbers look wrong, or everything reads zero, this is why. Pick the right field from the dropdown. Anything works: a custom <em>Dev days</em> field, a complexity score, even T-shirt sizes (you'll be asked what each size is worth).</p>
+<p>If your team doesn't estimate at all, switch the metric to <strong>Issue count</strong> and skip this.</p>
+<h3>2. Set up your team</h3>
+<p>Go to <strong>Team</strong>.</p>
+<p>Everyone with work in the current sprint appears automatically, marked <em>from issues</em>. Add anyone missing from the picker.</p>
+<p>Then <strong>uncheck anyone who shouldn't count towards capacity</strong> — managers, contractors, people who only occasionally grab a ticket. Their work still shows on the sprint page; it just stops making the team look over-loaded.</p>
+<p>Set <strong>allocation</strong> for part-timers. Someone at 60% has 60% of the days.</p>
+<h3>3. Connect your leave</h3>
+<p>Still on <strong>Team</strong>, find <strong>Where leave comes from</strong>.</p>
+<ul>
+<li><strong>Already track leave in Jira?</strong> Choose <em>Jira issues</em>, pick the project, press <strong>Test it</strong>. Done — the app reads it and stores nothing.</li>
+<li><strong>Don't?</strong> Either follow the recipe on that page to make a small Leave project (two minutes, and you get a board and approvals for free), or choose <em>Manual only</em> and type leave in by hand.</li>
+</ul>
+<p>Add your public holidays while you're there.</p>
+<h3>Optional: pick a theme</h3>
+<p>Go to <strong>Settings → Appearance</strong> and pick one of six themes — Violet, Nord, One Dark, Solarized, Dracula or Graphite. It's yours alone: everything else on the Settings page is shared with the team, but this lives in your browser and changes nothing for anyone else.</p>
+<p>Every theme has a <strong>light and a dark version</strong>, so the Auto / Light / Dark toggle top-right still works exactly as before. Leave it on Auto and the app follows Jira.</p>
+<p>Green, amber and red always mean healthy, warning and over capacity. A theme adjusts those shades so they stay readable on its background, but never changes what they mean.</p>
+<h3>4. Read the verdict</h3>
+<p>Go back to <strong>Delivery trends</strong>. There's now a large number and a sentence telling you whether the sprint is on track, behind, or overcommitted, and why.</p>
+<p>That's it. Everything else is detail behind that sentence.</p>
+<hr>
+<h2>The delivery trends page</h2>
+<p>Opens with the <strong>verdict strip</strong>: one big completion number, a status in words, and the single sentence explaining it.</p>
+<table><thead><tr><th>Status</th><th>Means</th></tr></thead><tbody><tr><td><strong>On track</strong></td><td>Completion is keeping pace with the calendar</td></tr><tr><td><strong>Behind schedule</strong></td><td>More than 15 points behind where the time elapsed says it should be</td></tr><tr><td><strong>Overcommitted</strong></td><td>The team took on more than 110% of its available capacity</td></tr><tr><td><strong>Scope keeps moving</strong></td><td>More than a quarter of the sprint arrived after it started</td></tr><tr><td><strong>Blocked work piling up</strong></td><td>15% or more of issues sit in a blocked status</td></tr><tr><td><strong>Under-committed</strong></td><td>Under 65% loaded — there's room for more</td></tr><tr><td><strong>Delivered / Partly delivered / Missed</strong></td><td>On a finished sprint, what actually happened</td></tr></tbody></table>
+<p>The checks run worst-first, so the headline names the most serious problem rather than the first one it finds.</p>
+<p>Beside it: <strong>committed</strong>, <strong>capacity</strong>, <strong>loaded</strong>, and — when it applies — <strong>not counted</strong>. That last one is work belonging to excluded people and unassigned issues. It's real work with nobody's capacity behind it, so it's shown separately rather than folded into a number it can't be divided against.</p>
+<p>Below the verdict is the track record: velocity per sprint, completion against scope change, a heatmap of who delivered what, and a consistency score per person.</p>
+<p><strong>Predictability</strong> is worth understanding: it's how <em>steady</em> your velocity is, not how fast. A team doing 20 points every sprint scores 100%. A team alternating 5 and 40 scores badly even though it averages more. Steady is what makes planning possible.</p>
+<hr>
+<h2>The current sprint page</h2>
+<p>The same verdict, then the detail.</p>
+<h3>Team capacity</h3>
+<p>The table everyone actually looks at.</p>
+<table><thead><tr><th>Column</th><th>Means</th></tr></thead><tbody><tr><td>Committed vs capacity</td><td>Green is done, amber is remaining, the white line is their capacity</td></tr><tr><td>Util</td><td>Committed ÷ capacity</td></tr><tr><td>Days</td><td>Available days / working days in the sprint, and what leave cost them</td></tr><tr><td>Status</td><td>Healthy, over, under, away, excluded, unassigned</td></tr></tbody></table>
+<p>Over 110% is <strong>over capacity</strong>. Under 70% is <strong>under capacity</strong>. Someone away the whole sprint is <strong>away</strong>, not over — they have no capacity to be over.</p>
+<p>People on the roster with nothing assigned still get a row. An idle person is exactly what a capacity view should surface.</p>
+<h3>Away this sprint</h3>
+<p>Everyone off during the sprint, and for how long. Rows read from Jira link back to the issue, so the reason is always one click away.</p>
+<h3>Burndown</h3>
+<p>Dashed is the ideal line, solid is what happened. It's built from the real status-change history, not from resolution dates, so it reflects when work actually finished.</p>
+<hr>
+<h2>Planning</h2>
+<p>Three questions, in the order a refinement meeting asks them.</p>
+<h3>What fits in the next sprint</h3>
+<p>Walks your backlog <strong>in Jira's rank order</strong> and takes items until capacity runs out. It deliberately doesn't reorder to pack the sprint tighter — that order is your priority call, not the app's.</p>
+<p>It names the <strong>first item below the line</strong>, which is usually the thing worth arguing about.</p>
+<h3>Runway</h3>
+<p>How many sprints of backlog you have left, as three bands: your fastest, average and slowest recent sprints. A range, not a date.</p>
+<p>It assumes nothing new arrives, which is never true. Read it as "if we stopped adding things", and read the scope-change trend on the Delivery trends page as the counterweight.</p>
+<h3>Readiness</h3>
+<p>Why each item isn't ready to pull. Click any chip to filter.</p>
+<p>An item is ready when it has an estimate, isn't bigger than the max item size, and meets whatever else you switched on in Settings. <strong>Max item size</strong> defaults to half of one person's sprint, so it scales when you change metric or assumptions.</p>
+<hr>
+<h2>How capacity is worked out</h2>
+<pre><code>available days = working days − leave − holidays
+capacity       = available days × allocation × hours per day × focus factor ÷ hours per unit</code></pre>
+<p><strong>Focus factor</strong> is the share of the day really available for sprint work, after standups, reviews and interruptions. Default 80%. If your team consistently finishes 60% of what it commits to, this is the first number to lower.</p>
+<p><strong>Hours per unit</strong> converts an hours budget into your metric. One story point defaults to 4 hours. If your capacity numbers feel systematically wrong, this is the second number to change.</p>
+<p>Two rules the maths follows that people often get wrong:</p>
+<ul>
+<li><strong>A day lost to a public holiday isn't charged again as leave.</strong> Booking leave across a bank holiday doesn't cost you two days.</li>
+<li><strong>Overlapping leave counts once.</strong> Two bookings on the same day cost one day, and a full day beats a half day.</li>
+</ul>
+<hr>
+<h2>Leave from Jira issues</h2>
+<p>The recommended setup, and it takes one dropdown. Go to <strong>Team → Where leave comes from</strong>, choose <strong>Jira issues</strong>, and pick your leave project from the list — projects that look like they hold leave are sorted to the top, and if there's an obvious one it's already selected. Press <strong>Test it</strong> to see what the app found before you save.</p>
+<p>You never have to write a Jira query. If you want to — because the project holds more than leave — open <strong>Advanced</strong> and edit it directly. The app leaves a hand-edited query alone.</p>
+<p>The app reads issues and never writes to them.</p>
+<table><thead><tr><th>Your issue</th><th>Becomes</th></tr></thead><tbody><tr><td>Assignee + start date + due date</td><td>That person is away those working days</td></tr><tr><td>Issue type <em>Sick leave</em>, <em>Parental leave</em>, <em>Training</em></td><td>The matching leave type</td></tr><tr><td>Label <code>half-day</code></td><td>Costs half a day</td></tr><tr><td>Label <code>public-holiday</code>, or type <em>Public holiday</em></td><td>Applies to everyone, no assignee needed</td></tr><tr><td>Status not yet approved</td><td><strong>Ignored</strong></td></tr></tbody></table>
+<p>That last row matters: a leave request nobody has approved will not shrink your sprint. If your workflow doesn't have an approval step, tick <strong>Count leave in any status</strong>.</p>
+<p><strong>Export leave</strong> above the table downloads exactly the rows on screen as CSV.</p>
+<p><strong>Test it</strong> shows what was found <em>and what was skipped, with the reason</em>. If someone's leave isn't showing up, that button tells you why — usually a missing start date or a status that isn't approved yet.</p>
+<hr>
+<h2>Troubleshooting</h2>
+<table><thead><tr><th>Symptom</th><th>Cause</th></tr></thead><tbody><tr><td>Everything reads zero</td><td>Wrong estimation field. Settings → Estimation field.</td></tr><tr><td>"N issues have no Story Points value"</td><td>Those issues genuinely aren't estimated. They count as zero.</td></tr><tr><td>Someone's leave isn't counted</td><td>Team → Where leave comes from → <strong>Test it</strong>. It'll say why.</td></tr><tr><td>Capacity looks too high</td><td>Lower the focus factor, or check whether people who don't do sprint work are still counted.</td></tr><tr><td>Capacity looks too low</td><td>Raise hours per point, or check allocations.</td></tr><tr><td>"Saving needs project admin permission"</td><td>Team settings write to a Jira project property, which needs project admin. Reading doesn't.</td></tr><tr><td>"This board has no sprints"</td><td>It's a Kanban board. Capacity tracking needs a scrum board.</td></tr><tr><td>Nothing loads at all</td><td>A Jira admin needs to approve the app's permissions in Apps → Manage apps.</td></tr></tbody></table>
+<hr>
+<h2>Where your data lives</h2>
+<p>Nothing is stored by the app vendor. There's no external database and no data leaves your Jira.</p>
+<ul>
+<li><strong>Leave</strong>, when read from issues, stays as Jira issues. The app only reads.</li>
+<li><strong>Team roster, leave-source settings, and any hand-typed leave</strong> go in a Jira project property on your project: <code>capacity-tracker.team</code>. You can read it yourself:</li>
+</ul>
+<p>``<code> GET /rest/api/3/project/{KEY}/properties/capacity-tracker.team </code>``</p>
+<p>It survives uninstalling the app.</p>
+<ul>
+<li><strong>Display preferences</strong> (metric mode, chart settings) sit in Forge storage, on Atlassian's infrastructure.</li>
+<li><strong>Your light/dark choice</strong> is in your own browser only.</li>
+</ul>
+</main>
+<footer>Capacity Tracker for Jira — an independent app by Foooverse</footer>
+</body>
+</html>

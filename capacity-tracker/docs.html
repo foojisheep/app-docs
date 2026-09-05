@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation · Capacity Tracker for Jira</title>
+<meta name="description" content="Documentation for Capacity Tracker for Jira, by Foooverse.">
+<style>
+:root {
+  --bg: #f7f8fc; --surface: #fff; --text: #1f2430; --muted: #626a7a;
+  --line: #e4e7ee; --line-soft: #edf0f5; --brand: #6d5dfb; --link: #5b4be0;
+  --code-bg: #f1f3f8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.65 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  background: var(--surface); border-bottom: 1px solid var(--line);
+  padding: 18px 24px; position: sticky; top: 0; z-index: 2;
+}
+header .in, main { max-width: 760px; margin: 0 auto; }
+header .in { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+/* The app is what a visitor arrived for; the publisher is context. Reversing
+   that — a big brand over a small app name — is the classic mistake on a
+   one-app vendor site, and it makes the page look like it belongs to someone
+   who has more products than they do. */
+.brand { display: flex; flex-direction: column; gap: 1px; text-decoration: none; line-height: 1.2; }
+.brand-app { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); }
+.brand-org { font-size: 11.5px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+.brand-org em { font-style: normal; color: var(--brand); }
+nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+nav a:hover, nav a[aria-current] { color: var(--link); }
+nav { display: flex; gap: 16px; margin-left: auto; }
+main { padding: 40px 24px 80px; }
+h1 { font-size: 30px; letter-spacing: -0.7px; margin: 0 0 8px; }
+h2 { font-size: 20px; letter-spacing: -0.3px; margin: 40px 0 10px; }
+h3 { font-size: 16px; margin: 28px 0 8px; }
+p, li { color: #2d3444; }
+a { color: var(--link); }
+code {
+  background: var(--code-bg); padding: 2px 5px; border-radius: 4px;
+  font: 13.5px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+pre {
+  background: var(--code-bg); padding: 14px 16px; border-radius: 8px;
+  overflow-x: auto; border: 1px solid var(--line);
+}
+pre code { background: none; padding: 0; font-size: 13px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; margin: 16px 0; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line-soft); }
+th { color: var(--muted); font-size: 12.5px; font-weight: 650; border-bottom: 1px solid var(--line); }
+blockquote {
+  margin: 18px 0; padding: 2px 18px; border-left: 3px solid var(--brand);
+  background: var(--surface); border-radius: 0 8px 8px 0;
+}
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 22px 24px; margin: 22px 0;
+}
+.lede { font-size: 18px; color: var(--muted); }
+footer {
+  border-top: 1px solid var(--line); padding: 26px 24px; color: var(--muted);
+  font-size: 13.5px; text-align: center;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111318; --surface: #1a1d24; --text: #f4f5f7; --muted: #a5a9b5;
+    --line: #2a2e38; --line-soft: #22262f; --brand: #8b7cff; --link: #a69bff;
+    --code-bg: #171a20;
+  }
+  p, li { color: #dcdee5; }
+}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <a class="brand" href="./" aria-label="Capacity Tracker for Jira by Foooverse">
+    <span class="brand-app">Capacity Tracker</span>
+    <span class="brand-org">fooo<em>verse</em></span>
+  </a>
+  <nav>
+    <a href="./docs.html" aria-current="page">Documentation</a>
+    <a href="./guide.html">User guide</a>
+    <a href="./support.html">Support</a>
+    <a href="./security.html">Security</a>
+    <a href="./privacy.html">Privacy policy</a>
+  </nav>
+</div></header>
+<main>
+<h1>Documentation</h1>
+<p>For the person installing and configuring the app. If you just want to read the numbers, the <a href="#">user guide</a> is the one you want.</p>
+<hr>
+<h2>What you need</h2>
+<ul>
+<li><strong>Jira Software</strong> — the app reads boards and sprints through Jira's Agile API, which exists only for Software projects. A Business or Work Management project has no boards.</li>
+<li><strong>A Scrum board with sprints.</strong> Kanban boards have no sprints, so there is no window to measure capacity against. The app will say so rather than showing zeros.</li>
+<li><strong>Project admin permission</strong> to change anything. Anyone who can browse the project can read the dashboards.</li>
+</ul>
+<hr>
+<h2>Installing</h2>
+<p>Install from the Atlassian Marketplace. A site admin approves the permissions once, and the app appears in two places:</p>
+<table><thead><tr><th>Where</th><th>What you get</th></tr></thead><tbody><tr><td><strong>Apps → Capacity Tracker</strong></td><td>The full app, six pages in the sidebar</td></tr><tr><td><strong>Project → Capacity</strong></td><td>The same pages as tabs, scoped to that project's boards</td></tr></tbody></table>
+<p>Nothing else is required. There is no account to create, no key to paste and no service to connect — the app has no backend of its own.</p>
+<hr>
+<h2>Permissions, and why each one</h2>
+<p>Ten scopes, and it is worth knowing that they come from two different systems. Jira's platform API wants <em>classic</em> scopes; the Agile API accepts only <em>granular</em> ones and also requires granular platform scopes that classic does not satisfy. That is why the list looks inconsistent — it is not.</p>
+<table><thead><tr><th>Scope</th><th>What it is for</th></tr></thead><tbody><tr><td><code>read:jira-work</code></td><td>Issues, fields, boards, sprints, project metadata</td></tr><tr><td><code>write:jira-work</code></td><td>The one write: your team configuration</td></tr><tr><td><code>manage:jira-project</code></td><td>Required by Jira to write that project property</td></tr><tr><td><code>read:jira-user</code></td><td>Assignable users, for the "add someone" picker</td></tr><tr><td><code>read:project:jira</code></td><td>Required by the Agile board list</td></tr><tr><td><code>read:issue-details:jira</code></td><td>Required by the Agile backlog and sprint-issue endpoints</td></tr><tr><td><code>read:jql:jira</code></td><td>Required by the Agile sprint-issue endpoint</td></tr><tr><td><code>read:board-scope:jira-software</code></td><td>Boards and backlogs</td></tr><tr><td><code>read:sprint:jira-software</code></td><td>Sprints and their issues</td></tr><tr><td><code>storage:app</code></td><td>Board display preferences, on Atlassian's own storage</td></tr></tbody></table>
+<p><strong>No permission lets the app act beyond what you can already do.</strong> Scopes never override Jira's own permissions. On top of that the app checks each viewer explicitly: reads are filtered to projects you can browse, and every write requires project admin on that project, both verified against Jira on each request.</p>
+<p><strong>There is no egress permission.</strong> The app makes no outbound network requests at all.</p>
+<hr>
+<h2>First-time setup</h2>
+<p>Three steps, about five minutes. Do them in this order — the estimation field affects everything downstream.</p>
+<h3>1. Estimation field</h3>
+<p><strong>Settings → Estimation field.</strong></p>
+<p>The app auto-detects Story Points. If your numbers look wrong, or everything reads zero, this is almost always why.</p>
+<p>Pick whatever your team actually estimates in:</p>
+<table><thead><tr><th>You estimate in</th><th>What to do</th></tr></thead><tbody><tr><td>Story points</td><td>Nothing — auto-detected</td></tr><tr><td>A custom numeric field (dev days, complexity)</td><td>Pick it from the dropdown</td></tr><tr><td>T-shirt sizes on a select list</td><td>Pick it, then give each option a number</td></tr><tr><td>Original time estimate</td><td>Pick the time-tracking field; seconds convert to hours</td></tr><tr><td>Nothing at all</td><td>Switch the metric to <strong>Issue count</strong></td></tr></tbody></table>
+<p>Settings are <strong>saved per board and shared with everyone</strong> who opens that board.</p>
+<h3>2. Team</h3>
+<p><strong>Team → Who's on the team.</strong></p>
+<p>Everyone with work in the current sprint appears automatically, marked <em>from issues</em>. Add anyone missing.</p>
+<p>Then uncheck anyone who should not count towards capacity — managers, contractors, people who occasionally pick up a ticket. Their work still shows on the sprint page; it simply stops making the team look overloaded. Set <strong>allocation</strong> for part-timers: someone at 60% has 60% of the days.</p>
+<h3>3. Leave</h3>
+<p><strong>Team → Where leave comes from.</strong> Three options:</p>
+<ul>
+<li><strong>Jira issues</strong> (recommended). Choose your leave project from the dropdown. The app reads it and stores nothing. Leave keeps Jira's history, approvals and audit trail.</li>
+<li><strong>Manual only.</strong> Type leave in by hand; it is stored in your Jira as a project property.</li>
+<li><strong>Both.</strong> Read from Jira, and keep hand-typed entries too.</li>
+</ul>
+<p>Press <strong>Test it</strong> before saving. It reports what it found <em>and what it skipped, with the reason</em> — a missing start date, a status that is not approved yet.</p>
+<p>One rule worth knowing: <strong>leave that is not yet approved does not reduce capacity.</strong> A pending request quietly shrinking a sprint would be worse than not tracking it. If your workflow has no approval step, tick <em>Count leave in any status</em>.</p>
+<h3>Holidays</h3>
+<p><strong>Team → Public holidays.</strong> Paste a whole year rather than adding dates one at a time:</p>
+<pre><code>2026-01-01 New Year's Day
+2026-04-03, Good Friday
+25/12/2026	Christmas Day</code></pre>
+<p><code>YYYY-MM-DD</code> or <code>DD/MM/YYYY</code>. <strong>American <code>MM/DD/YYYY</code> is rejected rather than guessed at</strong> — <code>03/04</code> is a different day depending on where you live, and guessing would put a holiday on the wrong date without telling you. Every line it skips is reported with the reason.</p>
+<p><strong>Copy a year forward</strong> carries fixed dates into the next year. Correct for Christmas and national days; wrong for Easter and anything defined as "the first Monday in May", which need fixing by hand.</p>
+<hr>
+<h2>Multiple teams</h2>
+<p><strong>A board is a team.</strong> Each board keeps its own roster, leave and holidays, so a project running two squads keeps them separate.</p>
+<p>If you used an earlier version where the roster was shared across a project, every board inherits that roster until you first edit it — nothing is lost, and boards diverge only when you deliberately change one. The Team page says when a board is showing an inherited roster.</p>
+<p><strong>Portfolio</strong> shows several boards side by side, worst first. Someone who works on two boards is <strong>counted once</strong> in the total: they have one set of working days, not two. The page states how much capacity a naive sum would have invented.</p>
+<hr>
+<h2>Appearance</h2>
+<p><strong>Settings → Appearance.</strong> Six themes, each with a light and a dark version. The Auto / Light / Dark toggle top-right still applies on top.</p>
+<p>This one is <strong>personal, not shared</strong> — it lives in your browser, not in Jira, so it changes nothing for anyone else. Everything else on the Settings page is shared with the team.</p>
+<p>Green, amber and red always mean healthy, warning and over capacity. A theme adjusts those shades to stay readable on its background but never changes what they mean.</p>
+<hr>
+<h2>Troubleshooting</h2>
+<p><strong>Everything reads zero, or the numbers look wrong.</strong> Wrong estimation field. Settings → Estimation field. The sprint page also banners "N issues have no <em>field</em> value" when it cannot read estimates.</p>
+<p><strong>"No boards visible to your account."</strong> Either the site has no Software project with a Scrum board, or you cannot browse the projects those boards belong to. The app hides boards you have no permission to open, which is deliberate.</p>
+<p><strong>"This board has no sprints."</strong> It is a Kanban board. Capacity is measured against a sprint window, so pick a Scrum board.</p>
+<p><strong>Someone's leave is not counted.</strong> Team → Where leave comes from → <strong>Test it</strong>. It will say why — usually a missing start date, or a status the workflow has not approved yet.</p>
+<p><strong>Saving is refused.</strong> Changes need project admin permission on that project. Reading needs only browse.</p>
+<p><strong>A holiday and leave on the same day.</strong> Counted once. A day already lost to a public holiday is not charged again as annual leave, and two overlapping leave entries cost one day.</p>
+<p><strong>Numbers differ between the sprint page and Portfolio.</strong> Portfolio de-duplicates people across boards; the sprint page does not, because it is looking at one board. That difference is the point of the page, and it is stated on it.</p>
+<hr>
+<h2>Getting help</h2>
+<p>See <a href="#">support</a>. For anything security-related, see the <a href="#">security statement</a>.</p>
+</main>
+<footer>Capacity Tracker for Jira — an independent app by Foooverse</footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security · Capacity Tracker for Jira</title>
+<meta name="description" content="Security for Capacity Tracker for Jira, by Foooverse.">
+<style>
+:root {
+  --bg: #f7f8fc; --surface: #fff; --text: #1f2430; --muted: #626a7a;
+  --line: #e4e7ee; --line-soft: #edf0f5; --brand: #6d5dfb; --link: #5b4be0;
+  --code-bg: #f1f3f8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.65 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+header {
+  background: var(--surface); border-bottom: 1px solid var(--line);
+  padding: 18px 24px; position: sticky; top: 0; z-index: 2;
+}
+header .in, main { max-width: 760px; margin: 0 auto; }
+header .in { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+/* The app is what a visitor arrived for; the publisher is context. Reversing
+   that — a big brand over a small app name — is the classic mistake on a
+   one-app vendor site, and it makes the page look like it belongs to someone
+   who has more products than they do. */
+.brand { display: flex; flex-direction: column; gap: 1px; text-decoration: none; line-height: 1.2; }
+.brand-app { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); }
+.brand-org { font-size: 11.5px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+.brand-org em { font-style: normal; color: var(--brand); }
+nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+nav a:hover, nav a[aria-current] { color: var(--link); }
+nav { display: flex; gap: 16px; margin-left: auto; }
+main { padding: 40px 24px 80px; }
+h1 { font-size: 30px; letter-spacing: -0.7px; margin: 0 0 8px; }
+h2 { font-size: 20px; letter-spacing: -0.3px; margin: 40px 0 10px; }
+h3 { font-size: 16px; margin: 28px 0 8px; }
+p, li { color: #2d3444; }
+a { color: var(--link); }
+code {
+  background: var(--code-bg); padding: 2px 5px; border-radius: 4px;
+  font: 13.5px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+pre {
+  background: var(--code-bg); padding: 14px 16px; border-radius: 8px;
+  overflow-x: auto; border: 1px solid var(--line);
+}
+pre code { background: none; padding: 0; font-size: 13px; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; margin: 16px 0; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line-soft); }
+th { color: var(--muted); font-size: 12.5px; font-weight: 650; border-bottom: 1px solid var(--line); }
+blockquote {
+  margin: 18px 0; padding: 2px 18px; border-left: 3px solid var(--brand);
+  background: var(--surface); border-radius: 0 8px 8px 0;
+}
+hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 22px 24px; margin: 22px 0;
+}
+.lede { font-size: 18px; color: var(--muted); }
+footer {
+  border-top: 1px solid var(--line); padding: 26px 24px; color: var(--muted);
+  font-size: 13.5px; text-align: center;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111318; --surface: #1a1d24; --text: #f4f5f7; --muted: #a5a9b5;
+    --line: #2a2e38; --line-soft: #22262f; --brand: #8b7cff; --link: #a69bff;
+    --code-bg: #171a20;
+  }
+  p, li { color: #dcdee5; }
+}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <a class="brand" href="./" aria-label="Capacity Tracker for Jira by Foooverse">
+    <span class="brand-app">Capacity Tracker</span>
+    <span class="brand-org">fooo<em>verse</em></span>
+  </a>
+  <nav>
+    <a href="./docs.html">Documentation</a>
+    <a href="./guide.html">User guide</a>
+    <a href="./support.html">Support</a>
+    <a href="./security.html" aria-current="page">Security</a>
+    <a href="./privacy.html">Privacy policy</a>
+  </nav>
+</div></header>
+<main>
+<h1>Security</h1>
+<p>Written to answer the Marketplace security self-assessment and the questions a customer's IT team will ask. Most answers are short because the app's architecture removes the question.</p>
+<hr>
+<h2>Architecture in one line</h2>
+<p>A Forge app that runs entirely on Atlassian's infrastructure, reads Jira as the app while checking each viewer's own permissions before returning anything, writes one project property, and has no external network access.</p>
+<hr>
+<h2>Marketplace security self-assessment</h2>
+<p>Phrase these into the portal's form; the substance is here.</p>
+<p><strong>Where is customer data stored?</strong> Inside the customer's own Atlassian Cloud site. Team configuration is a Jira project property (<code>capacity-tracker.team</code>). Display preferences use Forge storage on Atlassian's infrastructure. The partner operates no storage of any kind.</p>
+<p><strong>Does the app send data outside Atlassian?</strong> No. The app makes no outbound network requests. There are no external APIs, analytics, error-reporting services or CDNs. The UI bundle is fully self-contained, including its charts — no third-party script is loaded at runtime.</p>
+<p><strong>What authentication does the app use?</strong> Forge's built-in authentication. Jira calls run as the app (<code>api.asApp()</code>), and the app checks the viewer's own permissions before returning anything: boards are filtered to projects the user can BROWSE_PROJECTS, and every write requires ADMINISTER_PROJECTS on that project, both verified through Jira's bulk permissions API. <code>asUser()</code> is not used because it requires each individual to authorise the app before any call succeeds, which a Custom UI app has no way to prompt for. The viewer's own Jira permissions are enforced by the app on every request instead. The app holds no credentials, API tokens or secrets.</p>
+<p><strong>Can a user see data they aren't permitted to see?</strong> No, but the mechanism is worth stating accurately rather than reassuringly. Calls run as the app, so Jira is not filtering by the viewer's permissions on its own. The app asks instead: before returning anything, it checks the viewer's own BROWSE_PROJECTS against Jira's permissions API and drops every board they cannot open. A board with no identifiable project is hidden rather than shown — the check fails closed, and <code>src/permissions.test.js</code> pins that behaviour. A user who cannot open a board in Jira cannot see it in the app.</p>
+<p><strong>What are the app's permissions and why?</strong> See the table below.</p>
+<p><strong>Is data encrypted?</strong> In transit and at rest by Atlassian, as part of the Forge platform. The app adds no storage of its own to encrypt.</p>
+<p><strong>Third-party dependencies?</strong> React and React DOM in the UI bundle; <code>@forge/api</code>, <code>@forge/resolver</code> and <code>@forge/bridge</code> from Atlassian. No charting, analytics or utility libraries. The charts are hand-written SVG specifically to keep the dependency surface near zero.</p>
+<p><strong>Do you have a vulnerability disclosure process?</strong> Yes — see below.</p>
+<hr>
+<h2>Permissions, and why each one</h2>
+<table><thead><tr><th>Scope</th><th>Why</th><th>Risk if abused</th></tr></thead><tbody><tr><td><code>read:jira-work</code></td><td>Issues, fields, boards, sprints, project metadata, and the project property the roster lives in</td><td>Read-only, filtered to projects the viewer can browse</td></tr><tr><td><strong><code>write:jira-work</code></strong></td><td><strong>One of two write scopes.</strong> The team roster, leave and holidays, as a project property</td><td>Limited to one named property</td></tr><tr><td><strong><code>manage:jira-project</code></strong></td><td><strong>Required by the project-property write.</strong> Scopes never override Jira's own permissions, so this grants nothing the signed-in user could not already do</td><td>Gated on <code>ADMINISTER_PROJECTS</code>, checked per request</td></tr><tr><td><code>read:jira-user</code></td><td>Assignable users, for the "add someone to the team" picker</td><td>Read-only</td></tr><tr><td><code>read:project:jira</code></td><td>Required by <code>GET /rest/agile/1.0/board</code>. Classic <code>read:jira-work</code> does not satisfy it</td><td>Read-only</td></tr><tr><td><code>read:issue-details:jira</code></td><td>Required by the Agile backlog and sprint-issue endpoints</td><td>Read-only</td></tr><tr><td><code>read:jql:jira</code></td><td>Required by the Agile sprint-issue endpoint</td><td>Read-only</td></tr><tr><td><code>read:board-scope:jira-software</code></td><td>Boards and backlogs from the Agile API</td><td>Read-only</td></tr><tr><td><code>read:sprint:jira-software</code></td><td>Sprints and the issues in them</td><td>Read-only</td></tr><tr><td><code>storage:app</code></td><td>Display preferences per board</td><td>Atlassian-hosted</td></tr></tbody></table>
+<p>Classic scopes for the Jira platform API, granular for everything the Agile API touches. That split is not a style choice. Jira Software supports no classic scopes at all, and its endpoints additionally require granular Jira <em>platform</em> scopes that classic does not satisfy — the board list needs <code>read:project:jira</code> even when <code>read:jira-work</code> is granted. <code>forge lint</code> reports zero errors against manifests that Jira rejects on every call, so the per-endpoint <em>OAuth 2.0 scopes required</em> line in the REST reference is the only source of truth here.</p>
+<p>Classic is broader than granular, and that is a real trade. The honest description is that the app reads issues, fields, boards and sprints across the projects a viewer may browse, and writes a single project property.</p>
+<p>The narrowing that matters is not in the scope list anyway. It is in <code>src/access.js</code>: every read is filtered to projects the viewer holds <code>BROWSE_PROJECTS</code> on, and every write requires <code>ADMINISTER_PROJECTS</code>, both checked against Jira on each request.</p>
+<h3>On the write scope</h3>
+<p>This is the one a reviewer will ask about. The full answer:</p>
+<p>&gt; The app writes exactly one Jira project property, <code>capacity-tracker.team</code>, on the project &gt; being viewed. It holds one team per board: the roster, per-person availability settings, &gt; the leave-source configuration and the public holiday calendar. &gt; &gt; This is deliberate rather than convenient: storing that configuration in the customer's own &gt; Jira means they can read it over the REST API, export it, and keep it if the app is &gt; uninstalled. The alternative — Forge storage — would make the customer's configuration the &gt; app's property rather than theirs. &gt; &gt; The app never creates, edits, transitions, comments on or deletes an issue, sprint, board &gt; or project. &gt; &gt; <strong>Every write is authorised explicitly.</strong> Calls run as the app rather than as the viewer, &gt; because a Custom UI app cannot prompt for the per-user consent <code>asUser()</code> requires. That &gt; removes Jira's own 403 as a safety net, so the app reinstates it: each write resolver first &gt; asks Jira's permissions API whether the requesting account holds ADMINISTER_PROJECTS on &gt; that project, and refuses if not. The check is per request, against Jira, and is not &gt; cacheable or skippable from the browser — <code>requireProjectAdmin</code> in <code>src/index.js</code> gates &gt; every one of them.</p>
+<hr>
+<h2>Where injection could happen, and what stops it</h2>
+<p><strong>JQL.</strong> The leave-source feature accepts a JQL query, and only from a project admin — the same ADMINISTER_PROJECTS gate as every other write. It is passed to Jira's search API as a parameter, so Jira parses it; the app never concatenates it into anything.</p>
+<p>The query runs as the app, not as the viewer, which is worth being precise about: it is bounded by the app's scopes rather than the reader's permissions. Two things contain that. The query is set by a project admin, who could read those issues anyway. And the picker now generates the query from a chosen project rather than expecting one to be typed, so the common path involves no hand-written JQL at all. The worst outcome is a query returning nothing useful, which the <strong>Test it</strong> dry run surfaces before saving.</p>
+<p><strong>CSV.</strong> Exported cells beginning <code>=</code>, <code>+</code>, <code>-</code> or <code>@</code> are prefixed with an apostrophe, so a crafted Jira summary cannot become a formula when the file opens in Excel. This is tested (<code>src/csv.test.js</code>).</p>
+<p><strong>Rendered content.</strong> The UI renders text as React children, never <code>dangerouslySetInnerHTML</code>. Issue summaries and user names are escaped by React.</p>
+<p><strong>Stored configuration.</strong> Numeric settings are clamped to sane ranges on save; leave dates are validated and rejected if malformed. Records read from Jira issues are never written back into storage.</p>
+<hr>
+<h2>Data minimisation</h2>
+<ul>
+<li>Issue descriptions are checked only for existence, never read or stored</li>
+<li>Backlog reads skip changelog expansion, since backlog items haven't moved</li>
+<li>The team property is pruned: leave and holidays older than ~400 days are dropped, which limits how much personal data accumulates as well as keeping the property small</li>
+<li>That property now holds one roster per board, so its size is checked across the whole property rather than per team — checking per team would pass and Jira would then reject the write. The limit is enforced at 30KB with a clear error naming the largest boards</li>
+<li>The Portfolio page reads several boards in one request. Each is read through the same code path and the same permission filter as the single-board view, and a board the viewer cannot browse is reported as an error row rather than silently omitted or bypassed</li>
+<li>Aggregation happens server-side, so raw issue payloads never reach the browser</li>
+</ul>
+<hr>
+<h2>Vulnerability disclosure</h2>
+<p>Report to <strong>foooverse@gmail.com</strong>.</p>
+<ul>
+<li>Acknowledgement within 2 business days</li>
+<li>Assessment and a fix plan within 5 business days</li>
+<li>We won't pursue legal action for good-faith research</li>
+</ul>
+<p>Consider joining Atlassian's <a href="https://developer.atlassian.com/platform/marketplace/marketplace-security-bug-bounty-program/" rel="noreferrer">Marketplace Bug Bounty programme</a> once you have paying customers — enterprise buyers look for it.</p>
+<hr>
+<h2>Incident response</h2>
+<p>If a security incident affects customer data:</p>
+<ol>
+<li>Take the affected version off the Marketplace</li>
+<li>Notify affected customers within 72 hours</li>
+<li>Ship a fix and publish what happened</li>
+<li>Post a summary on the listing's security tab</li>
+</ol>
+<p><em>(Fill in your own contact and escalation details before publishing.)</em></p>
+<hr>
+<h2>What the app is not</h2>
+<p>Stated plainly, because it saves a round of questions:</p>
+<ul>
+<li>Not a leave management system — it reads leave, it doesn't approve or manage it</li>
+<li>Not a system of record — delete it and your Jira is unchanged</li>
+<li>Not a data processor in the usual sense — it processes in-flight and stores nothing</li>
+<li>Not able to modify your work — no issue, sprint or board write scope exists</li>
+</ul>
+</main>
+<footer>Capacity Tracker for Jira — an independent app by Foooverse</footer>
+</body>
+</html>
