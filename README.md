@@ -49,4 +49,4 @@ Something wrong, unclear or out of date? Open an issue:
 
 That tracker is also where bug reports for the apps themselves go.
 
-**Contact:** foooverse@gmail.com
+**Contact:** support@foooverse.com
