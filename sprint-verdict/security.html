@@ -33,7 +33,8 @@ header .in { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .brand-org em { font-style: normal; color: var(--brand); }
 nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
 nav a:hover, nav a[aria-current] { color: var(--link); }
-nav { display: flex; gap: 16px; margin-left: auto; }
+/* wrap, not overflow: seven items do not fit one phone-width line */
+nav { display: flex; gap: 16px; margin-left: auto; flex-wrap: wrap; }
 main { padding: 40px 24px 80px; }
 h1 { font-size: 30px; letter-spacing: -0.7px; margin: 0 0 8px; }
 h2 { font-size: 20px; letter-spacing: -0.3px; margin: 40px 0 10px; }
@@ -66,6 +67,44 @@ footer {
   border-top: 1px solid var(--line); padding: 26px 24px; color: var(--muted);
   font-size: 13.5px; text-align: center;
 }
+/* ---------------------------------------------------------------- mobile */
+/* A privacy policy that a customer cannot read on a phone is a privacy policy
+   they do not read. Measured at 375px before this existed: the page overflowed
+   its own viewport by 217px, so every paragraph was cut off on the right and
+   the whole document scrolled sideways. Two causes, both handled below.
+
+   1. The nav: seven links on one non-wrapping flex line, 459px wide.
+   2. Tables: the permissions table is three columns of prose, 569px wide.
+      Shrinking the text would make it unreadable, so the table keeps its width
+      and scrolls inside its own box instead. display:block is what lets it do
+      that, which is why it is scoped to the media query — it would undo
+      width:100% on a desktop.
+
+   No backticks anywhere in this block: the whole stylesheet is a JS template
+   literal, and one backtick ends it. */
+@media (max-width: 720px) {
+  header { padding: 14px 16px; }
+  header .in { gap: 12px; }
+  nav { margin-left: 0; width: 100%; gap: 14px 18px; }
+  nav a { font-size: 13.5px; }
+
+  main { padding: 26px 16px 60px; }
+  h1 { font-size: 25px; letter-spacing: -0.5px; }
+  h2 { font-size: 18px; margin-top: 32px; }
+  .lede { font-size: 16.5px; }
+  .card { padding: 18px 16px; border-radius: 10px; }
+  blockquote { padding: 2px 14px; }
+
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  th, td { padding: 8px 10px; }
+}
+
+/* Long unbroken strings — REST paths, scope names, the odd bare URL — are the
+   other way a page ends up wider than the phone holding it. */
+p, li, td, th, h1, h2, h3 { overflow-wrap: break-word; }
+code { overflow-wrap: break-word; }
+a { overflow-wrap: break-word; }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #111318; --surface: #1a1d24; --text: #f4f5f7; --muted: #a5a9b5;
@@ -99,8 +138,7 @@ footer {
 <h2>Architecture in one line</h2>
 <p>A Forge app that runs entirely on Atlassian's infrastructure, reads Jira as the app while checking each viewer's own permissions before returning anything, writes one project property, and has no external network access.</p>
 <hr>
-<h2>Marketplace security self-assessment</h2>
-<p>Phrase these into the portal's form; the substance is here.</p>
+<h2>Common security questions</h2>
 <p><strong>Where is customer data stored?</strong> Inside the customer's own Atlassian Cloud site. Team configuration is a Jira project property (<code>capacity-tracker.team</code>). Display preferences use Forge storage on Atlassian's infrastructure. The partner operates no storage of any kind.</p>
 <p><strong>Does the app send data outside Atlassian?</strong> No. The app makes no outbound network requests. There are no external APIs, analytics, error-reporting services or CDNs. The UI bundle is fully self-contained, including its charts — no third-party script is loaded at runtime.</p>
 <p><strong>What authentication does the app use?</strong> Forge's built-in authentication. Jira calls run as the app (<code>api.asApp()</code>), and the app checks the viewer's own permissions before returning anything: boards are filtered to projects the user can BROWSE_PROJECTS, and every write requires ADMINISTER_PROJECTS on that project, both verified through Jira's bulk permissions API. <code>asUser()</code> is not used because it requires each individual to authorise the app before any call succeeds, which a Custom UI app has no way to prompt for. The viewer's own Jira permissions are enforced by the app on every request instead. The app holds no credentials, API tokens or secrets.</p>
@@ -143,7 +181,7 @@ footer {
 <li>Assessment and a fix plan within 5 business days</li>
 <li>We won't pursue legal action for good-faith research</li>
 </ul>
-<p>Consider joining Atlassian's <a href="https://developer.atlassian.com/platform/marketplace/marketplace-security-bug-bounty-program/" rel="noreferrer">Marketplace Bug Bounty programme</a> once you have paying customers — enterprise buyers look for it.</p>
+<p>This app does not currently participate in a bug bounty programme. Reports come directly to the address above and are handled by the developer who wrote the code.</p>
 <hr>
 <h2>Incident response</h2>
 <p>If a security incident affects customer data:</p>
@@ -153,14 +191,14 @@ footer {
 <li>Ship a fix and publish what happened</li>
 <li>Post a summary on the listing's security tab</li>
 </ol>
-<p><em>(Fill in your own contact and escalation details before publishing.)</em></p>
+<p>There is no escalation chain: the person who receives the report is the person who fixes it. Contact <strong>support@foooverse.com</strong> for anything security-related, including during an incident. Atlassian is notified in parallel with customers, through the Marketplace security process.</p>
 <hr>
 <h2>What the app is not</h2>
 <p>Stated plainly, because it saves a round of questions:</p>
 <ul>
 <li>Not a leave management system — it reads leave, it doesn't approve or manage it</li>
 <li>Not a system of record — delete it and your Jira is unchanged</li>
-<li>Not a data processor in the usual sense — it processes in-flight and stores nothing</li>
+<li>Not a holder of your data — it is a processor under GDPR, but it processes in-flight inside your own site and keeps no copy. See the <a href="https://foojisheep.github.io/app-docs/sprint-verdict/privacy.html" rel="noreferrer">privacy policy</a></li>
 <li>Not able to modify your work — no issue, sprint or board write scope exists</li>
 </ul>
 </main>
