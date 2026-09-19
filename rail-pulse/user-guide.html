@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Guide — RailPulse</title>
+<style>
+  :root {
+    --ink: #1c2033; --muted: #6b6558; --faint: #9a9284;
+    --bg: #f6f3ec; --panel: #ffffff; --border: #e1dccb; --accent: #a9711f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+  nav.crumb { font-size: 14px; margin-bottom: 24px; }
+  nav.crumb a { color: var(--accent); text-decoration: none; }
+  nav.crumb a:hover { text-decoration: underline; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  .updated { color: var(--faint); font-size: 13px; margin-bottom: 32px; }
+  h2 { font-size: 18px; margin: 36px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+  p, li { color: #2b2e28; font-size: 15.5px; }
+  ol, ul { padding-left: 22px; }
+  code, .badge { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; font-size: 0.9em; }
+  .status-list li { margin-bottom: 4px; }
+  .callout {
+    background: var(--panel); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 14px 16px; margin: 16px 0; font-size: 14.5px; color: var(--muted);
+  }
+  footer { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 20px; font-size: 14px; color: var(--muted); }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="crumb"><a href="index.html">Foooverse / RailPulse Docs</a></nav>
+    <h1>User Guide</h1>
+    <p class="updated">Welcome to RailPulse — a community-powered way to check live status and report issues on rail lines, brought to you by Foooverse.</p>
+
+    <h2>Getting Started</h2>
+    <p>No sign-up is required. Simply open the App and you'll see the current status of every tracked line.</p>
+
+    <h2>Checking Line Status</h2>
+    <p>The main screen shows every line with a color-coded status:</p>
+    <ul class="status-list">
+      <li><strong>Green</strong> — Normal service</li>
+      <li><strong>Yellow</strong> — Delayed</li>
+      <li><strong>Orange/Red</strong> — Disrupted</li>
+      <li><strong>Dark red</strong> — Service halted</li>
+    </ul>
+    <p>Tap any line to see its full list of stations and recent reports specific to that line.</p>
+
+    <h2>Refreshing for the Latest Updates</h2>
+    <ul>
+      <li><strong>Pull down</strong> on the screen to refresh and check for new reports.</li>
+      <li>Or tap the <strong>refresh icon</strong> at the top of the screen at any time.</li>
+    </ul>
+    <p>Refreshing does not reopen the information panel — see below for when that appears.</p>
+
+    <h2>Reading a Report</h2>
+    <p>Each report in the feed shows:</p>
+    <ul>
+      <li><strong>Where it came from</strong> — an official operator notice, a community discussion post, or a fellow rider.</li>
+      <li><strong>What's happening</strong>, and which station it relates to.</li>
+      <li><strong>When it was posted.</strong></li>
+      <li><strong>A photo</strong>, when one was included.</li>
+    </ul>
+    <div class="callout">
+      Official notices may also include an expected repair or resume time, shown as a small highlighted note (for example, "Maintenance window: tonight 12:30am–4:30am" or "Targeted completion: [date]"), along with a link so you can read the original notice in full.
+    </div>
+
+    <h2>Reporting an Issue</h2>
+    <p>If you notice something happening on a line — a delay, a breakdown, crowding, or anything else — you can let other riders know:</p>
+    <ol>
+      <li>Tap the <strong>Report</strong> button.</li>
+      <li>Select the line and station.</li>
+      <li>Choose the issue type.</li>
+      <li>Add a short note describing what's happening.</li>
+      <li><strong>Attach a photo.</strong> A photo is required to submit a report — this helps other riders trust what they're seeing.</li>
+      <li>Tap <strong>Submit</strong>.</li>
+    </ol>
+    <p>Your report will appear in the feed for other riders to see. Please avoid including faces, license plates, or anything else you wouldn't want shown publicly — your photo is visible to anyone viewing that line.</p>
+
+    <h2>Flagging a Report</h2>
+    <p>If you see a report that looks wrong, unrelated, spam, or contains sensitive content, you can flag it:</p>
+    <ol>
+      <li>Tap <strong>Flag</strong> on the report.</li>
+      <li>Choose the reason that best fits.</li>
+    </ol>
+    <p>Reports flagged by enough different riders are automatically removed. Flags are final and cannot be undone once submitted, so please only flag reports that genuinely need it.</p>
+
+    <h2>About Your Data</h2>
+    <ul>
+      <li>No account or personal information is required to use the App.</li>
+      <li>Reports and photos are automatically deleted a set time after the related issue is marked resolved.</li>
+      <li>A short explanation of how your data is handled appears each time you open the App — tap the <strong>info icon</strong> at any time to view it again.</li>
+    </ul>
+    <p>For full details, see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+
+    <h2>If Reporting Is Disabled on Your Device</h2>
+    <p>If several of your reports are removed by other riders for being incorrect or inappropriate, reporting may be temporarily disabled on your device. You can still view all line statuses and reports as normal. If you believe this happened in error, contact us at <a href="mailto:support@foooverse.com">support@foooverse.com</a>.</p>
+
+    <h2>Switching Between Light and Dark Mode</h2>
+    <p>Tap the <strong>sun/moon icon</strong> at the top of the screen to switch between light and dark themes at any time.</p>
+
+    <h2>Getting Help</h2>
+    <p>If you run into a problem or have feedback, see our <a href="support.html">Support page</a> or email <a href="mailto:support@foooverse.com">support@foooverse.com</a>.</p>
+
+    <footer>
+      <a href="index.html">← Back to Documentation Home</a> · <a href="mailto:support@foooverse.com">support@foooverse.com</a>
+    </footer>
+  </div>
+</body>
+</html>
