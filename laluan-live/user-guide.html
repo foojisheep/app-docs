@@ -28,6 +28,9 @@
   }
   footer { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 20px; font-size: 14px; color: var(--muted); }
   footer a { color: var(--accent); }
+  .mini-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  .mini-table th, .mini-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .mini-table th { color: var(--muted); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -37,126 +40,126 @@
     <p class="updated">Welcome to LaluanLive — a community-powered way to check live status and report issues on rail lines, brought to you by Foooverse.</p>
 
     <h2>Getting Started</h2>
-    <p>No sign-up is required. Simply open the App and you'll see the current status of every tracked line.</p>
+    <p>No sign-up is required. Open the app and you'll see the current status of all six lines: Kelana Jaya, Ampang, Sri Petaling, Kajang, Putrajaya and Shah Alam.</p>
 
     <h2>Checking Line Status</h2>
-    <p>The main screen shows every line with a color-coded status:</p>
-    <ul class="status-list">
-      <li><strong>Green</strong> — Normal service</li>
-      <li><strong>Yellow</strong> — Delayed</li>
-      <li><strong>Orange/Red</strong> — Disrupted</li>
-      <li><strong>Dark red</strong> — Service halted</li>
-    </ul>
-    <p>Tap any line to open its page. There you'll find the line's stations laid out top to bottom in the order the line actually runs, along with recent reports for that line.</p>
+    <p>The main screen shows every line as a card with its code, its name and a status label with an icon:</p>
     <ul>
-      <li>Stations with a reported problem are highlighted and show how many reports are active. Tap the ⚠ chip at the top of the list to jump straight to them.</li>
-      <li>Interchange stations, where you can change to another line, are marked with a ring and an "Interchange" tag.</li>
-      <li>Tap a station to see only the reports for that station.</li>
-      <li>On long lines, the first stretch of stations is shown, with a "Show all" button to expand the full list.</li>
+    <li><strong>Normal</strong> — no active problems reported</li>
+    <li><strong>Delayed</strong> — a problem is slowing service</li>
+    <li><strong>Disrupted</strong> — a more serious problem is affecting service</li>
+    <li><strong>Halted</strong> — service has stopped</li>
     </ul>
+    <p>The header at the top says how many lines are affected (for example "2 of 6 lines affected"), when the information was last updated, and roughly how many people are using the app right now.</p>
+    <ul>
+    <li>A line running normally is a single compact row with a short note, such as "No active reports" or "4 riders say it's running fine".</li>
+    <li>An affected line expands to show the reason, where the information came from (Official or Rider report) and when.</li>
+    <li>Tap the star on a line to pin it as <strong>your line</strong>. It's shown first from then on, and is remembered on your device only.</li>
+    <li><strong>Latest updates, all lines</strong> lists the five newest items across the network.</li>
+    </ul>
+    <p>Tap a line to open its page.</p>
 
-    <h2>Refreshing for the Latest Updates</h2>
+    <h2>A Line's Page</h2>
+    <p>Each line has its own page and its own link, and Back takes you to the board. From top to bottom:</p>
+    <ol>
+    <li><strong>Status</strong> — the line's current status and the reason for it.</li>
+    <li><strong>Alternatives</strong> — options for getting around a problem (see "Finding Another Way" below).</li>
+    <li><strong>Official updates (Rapid KL)</strong> — notices from RapidKL, with the ones still active first. If there are none you'll see "No Rapid KL notice for this line right now", with a link to RapidKL's Pulse page.</li>
+    <li><strong>Rider reports (Unverified)</strong> — reports from other riders, each with Agree and Flag buttons.</li>
+    <li><strong>News and social</strong> — news coverage, folded away until you open it.</li>
+    <li><strong>Stations</strong> — folded away until you open it. The line is drawn as a rail, with interchange stations marked and stations that have reports highlighted. Tap a station to see only the updates for that station.</li>
+    </ol>
+    <p>At the bottom of the page, <strong>Report a problem</strong> and <strong>Running fine</strong> sit side by side.</p>
+
+    <h2>On a Computer</h2>
+    <p>On a wide screen (about 1024 pixels and up) the app shows three panes: the lines on the left, the updates in the middle (with filter tabs: All, Official, Rider reports, News & social), and the details on the right.</p>
+
+    <h2>Refreshing</h2>
+    <p>Pull down on the screen to refresh. The app also refreshes by itself. What you see can be up to about 30 seconds behind, because the data is cached briefly to keep the app fast.</p>
+
+    <h2>Reading an Update</h2>
+    <p>Every update shows where it came from, plus a clock time and how long ago, for example "8:02 am · 12 min ago":</p>
     <ul>
-      <li><strong>Pull down</strong> on the screen to refresh and check for new reports.</li>
-      <li>Or tap the <strong>refresh icon</strong> at the top of the screen at any time.</li>
+    <li><strong>Official · Rapid KL</strong> — a notice from RapidKL's own service announcements.</li>
+    <li><strong>Rider report · Unverified</strong> — a report from another rider. It's labelled Unverified because RapidKL hasn't confirmed it; other riders can Agree with it or Flag it.</li>
+    <li><strong>News</strong> — coverage from a news outlet, with the publisher credited and a "Read article" link.</li>
     </ul>
-    <p>Refreshing does not reopen the information panel — see below for when that appears.</p>
+    <p><strong>Official notices</strong> come from RapidKL's service announcements, which RapidKL publishes in Malay and English. LaluanLive shows the English version. They can lag behind what's happening on the platform, so they aren't a live feed. Some mention an expected repair or resume time. When RapidKL announces that service has been restored, that shows up as a resolved update and the earlier open items for that line are closed.</p>
+    <p><strong>News</strong> is third-party reporting, not RapidKL's own words. It never affects a line's status and is removed 48 hours after it was published.</p>
+    <p>Older rider reports may include a photo. New reports don't, because photos are no longer collected.</p>
 
     <h2>How a Line's Status Is Decided</h2>
-    <p>A line's color-coded status isn't based on just one report — that would make it too easy to trigger by mistake or on purpose. Here's how it actually works:</p>
+    <p>Rider reports from the last hour are combined to work out a line's status:</p>
     <ul>
-      <li><strong>Official operator notices</strong> change the status immediately, since that's the operator confirming it themselves.</li>
-      <li><strong>A single rider report</strong> (or a single community post) shows up in the feed right away, but on its own it does not change the line's overall status.</li>
-      <li><strong>Once a few different riders</strong> report the same kind of issue on the same line within a short window, the status escalates to reflect that — first to "Delayed," then further to "Disrupted" or "Service halted" as more independent reports come in.</li>
-      <li>We count <strong>different people</strong>, not just report volume — so one person resubmitting or refreshing repeatedly won't cause a status change.</li>
+    <li>Each device counts once, using its most serious report.</li>
+    <li>More serious problem types count for more. A breakdown or a delay counts for more than crowding or an "other" report.</li>
+    <li>One breakdown or delay report is enough to mark a line Delayed. A single crowding report is not. Disrupted takes more, or more serious, reports, and Halted needs reports from several different riders.</li>
+    <li>RapidKL notices set a minimum: the line is at least as bad as the notice says. The final status is whichever is worse, the riders' picture or RapidKL's notice.</li>
+    <li>News, Agree and Running fine never change the status directly.</li>
     </ul>
-    <div class="callout">
-      This means the status you see reflects either an official confirmation, or agreement among several independent riders — not any single report alone.
-    </div>
 
-    <h2>Reading a Report</h2>
-    <p>Each report in the feed shows:</p>
+    <h2>When an Issue Closes</h2>
+    <p>Open items are checked every few minutes and close in these cases:</p>
     <ul>
-      <li><strong>Where it came from</strong> — an official operator notice, a news article covering the disruption, or a fellow rider.</li>
-      <li><strong>What's happening</strong>, and which station it relates to.</li>
-      <li><strong>When it was posted.</strong></li>
-      <li><strong>A photo</strong>, when one was included.</li>
+    <li><strong>RapidKL says service is back.</strong> When RapidKL announces that service has been restored, the earlier open items for that line close.</li>
+    <li><strong>Quiet for 30 minutes.</strong> If a line sees no new activity for 30 minutes, its open items close. Official notices with a repair target more than 6 hours after they were published are the exception. They stay open until RapidKL says it's over or replaces them.</li>
+    <li><strong>Riders say it's running fine.</strong> When three different riders confirm a line is running fine, an open rider report on it can close early. This doesn't happen while a RapidKL notice for that line is still open.</li>
     </ul>
-    <div class="callout">
-      Official notices may also include an expected repair or resume time, shown as a small highlighted note (for example, "Maintenance window: tonight 12:30am–4:30am" or "Targeted completion: [date]"), along with a link so you can read the original notice in full.
-    </div>
-    <p><strong>News cards</strong> show coverage from news outlets reporting on a disruption, credited to the publisher with a "Read article" link. These are third-party reporting, not RapidKL's own words — they never affect a line's status, and are removed 48 hours after publication.</p>
-    <p><strong>Where official notices come from.</strong> They are taken from RapidKL's own service announcements, which RapidKL publishes in Malay and English; LaluanLive shows the English version. They can lag behind what's happening on the platform, so they aren't a live feed. When RapidKL announces that service has been restored, the earlier notice for that line is closed automatically.</p>
+    <p>A repair date never closes anything by itself. If it passes with no update, the notice is marked "date passed, awaiting update". Closed items are deleted 48 hours later.</p>
 
-    <h2>Reporting an Issue</h2>
-    <p>If you notice something happening on a line — a delay, a breakdown, crowding, or anything else — you can let other riders know:</p>
+    <h2>Reporting a Problem</h2>
     <ol>
-      <li>Tap the <strong>Report</strong> button.</li>
-      <li>Select the line and station.</li>
-      <li>Choose the issue type.</li>
-      <li>Add a short note describing what's happening.</li>
-      <li><strong>Attach a photo.</strong> A photo is required to submit a report — this helps other riders trust what they're seeing.</li>
-      <li>Tap <strong>Submit</strong>.</li>
+    <li>Tap <strong>Report a problem</strong> at the bottom of the screen. From the board you pick the line first. From a line's page, the line is already filled in.</li>
+    <li>Pick the problem: <strong>Breakdown</strong>, <strong>Delay</strong>, <strong>Crowding</strong> or <strong>Other</strong>.</li>
+    <li>Optionally choose the station and add a short note.</li>
+    <li>Tap <strong>Send</strong>.</li>
     </ol>
-    <p>After submitting, a confirmation screen thanks you and reminds you the report will disappear automatically in 48 hours. It closes on its own after a few seconds, or you can dismiss it immediately by tapping "Got it" or tapping outside it.</p>
-    <p>Your report will appear in the feed for other riders to see. Please avoid including faces, license plates, or anything else you wouldn't want shown publicly — your photo is visible to anyone viewing that line.</p>
-
-    <h2>Flagging a Report</h2>
-    <p>If you see a report that looks wrong, unrelated, spam, or contains sensitive content, you can flag it:</p>
-    <ol>
-      <li>Tap <strong>Flag</strong> on the report.</li>
-      <li>Choose the reason that best fits.</li>
-    </ol>
-    <p>Reports flagged by enough different riders are automatically removed. Flags are final and cannot be undone once submitted, so please only flag reports that genuinely need it.</p>
-    <p>If a report has already unlocked <strong>Share</strong> (see below), flagging it also permanently disables sharing on that report — even if it doesn't get removed outright. You'll see a warning about this when choosing a flag reason, so think it through before confirming.</p>
+    <p>A short confirmation appears, and your report shows up as "Rider report · Unverified". There's no photo to attach.</p>
+    <p>To keep the feed trustworthy there are limits: one report per line every 5 minutes, and up to 6 reports an hour. If you hit a limit, the app tells you.</p>
 
     <h2>Agreeing with a Report</h2>
-    <p>If you see a report that matches what you're experiencing too, tap <strong>Agree (👍)</strong> to confirm it. This helps other riders gauge how many people are seeing the same thing.</p>
-    <ul>
-      <li>You can agree with a report once, and you can withdraw your agreement at any time by tapping it again.</li>
-      <li>You can't agree with your own report.</li>
-      <li>Agreeing isn't available once a report is resolved or removed.</li>
-    </ul>
-    <div class="callout">
-      Agree counts are a helpful signal for other riders, but they don't change a line's official status on their own — status changes are based on the number of separate reports, not agrees. Think of Agree as "me too," not a vote that escalates the situation.
-    </div>
+    <p>If another rider's report matches what you're seeing, tap <strong>Agree</strong> to back it up. You can't agree with your own report or with one that's already resolved, and you can withdraw your agreement later. Agree helps other riders see how many people are noticing the same thing, but it doesn't change a line's status on its own.</p>
 
-    <h2>Sharing a Report</h2>
-    <p>Once a rider report has at least <strong>3 Agrees and no flags</strong>, a <strong>Share</strong> button becomes available on it. You can share it to WhatsApp (including directly to RapidKL's official feedback line), X, or Threads. Until it unlocks, the button shows a live count — e.g. "Needs 2 more 👍 to unlock Share" — so you know exactly how close it is.</p>
-    <p>If your Agree is the one that takes a report to exactly 3, you'll see a small celebration and a thank-you message — you personally helped unlock it for everyone.</p>
-    <p>Official operator notices and news articles don't need this since they're already confirmed at the source, so Share is always available on those.</p>
-    <p>If a report is flagged by even one other rider, Share is disabled for that report permanently — no number of later Agrees brings it back, the same way flags themselves can't be withdrawn once submitted. If you open the flag menu on a report that's already unlocked Share, you'll see a warning about this before you confirm.</p>
-    <p>If tapping a share option doesn't open anything (this can happen depending on your browser), the sheet includes a "Copy the message" fallback so you can paste it wherever you'd like instead.</p>
-
-    <h2>Finding Another Way</h2>
-    <p>When a line is delayed, disrupted or halted, its page shows a "Need another way?" card with:</p>
+    <h2>Flagging a Report</h2>
+    <p>If a report looks wrong, unrelated, spam, or contains sensitive content, tap <strong>Flag</strong> and choose the reason that fits best:</p>
     <ul>
-      <li><strong>Alternative service details</strong>, when RapidKL's notice mentions them — for example replacement buses, trains turning back at a station, or where to change trains. This is RapidKL's own information, shown as they wrote it.</li>
-      <li><strong>Open in Google Maps</strong> — opens Google Maps centered on the affected station, so you can plan a route to wherever you're going.</li>
-      <li><strong>Find a ride</strong> — a link to a ride-hailing option near the affected station.</li>
+    <li>Sensitive or inappropriate</li>
+    <li>Wrong or unrelated photo</li>
+    <li>Not relevant to this line or station</li>
+    <li>Spam or fake report</li>
     </ul>
-    <p>LaluanLive doesn't know where you are or where you're headed, and it doesn't plan alternative routes itself. These buttons hand you over to other apps and services, which have their own terms and privacy policies. The card disappears once the line is back to normal.</p>
+    <p>Flags are final and can't be undone, so please only flag reports that genuinely need it. A report is removed once enough different riders have flagged it: 2 flags for sensitive content, 3 for any other reason.</p>
 
     <h2>Confirming a Line Is Running Fine</h2>
-    <p>On the page of a line that's currently affected, you can tap <strong>✓ Running fine</strong> to let other riders know things seem normal — a quick "me too" in the good direction, no photo or note needed. You can confirm each line once an hour. The button only appears while a line is delayed, disrupted or halted, since there's nothing to confirm on a line that already shows normal service.</p>
-    <p>When enough riders confirm this in a short window, it can help a line's status return to normal faster than waiting for reports to simply stop coming in. This never overrides an active official notice — if RapidKL says a line is still affected, rider confirmations alone won't flip it back to normal.</p>
+    <p>At the bottom of a line's page, tap <strong>Running fine</strong> to let other riders know things seem normal. It's one tap, with no note needed, and you can confirm each line once an hour.</p>
+    <p>Confirmations don't appear in the feed, and they can't be flagged. On the board, a normal line may show how many riders say it's running fine, for example "4 riders say it's running fine". As described above, when three riders confirm, an open rider report can close early. Confirmations never change a line's status directly.</p>
 
-    <h2>Viewer Counts</h2>
-    <p>Each line shows how many people have viewed it (👁). Separately, near the top of the app, you'll see roughly how many riders are using LaluanLive right now (🔴), across the whole app rather than any one line. These are simple indicators of activity, not precise or verified counts — treat the live number as a rough sense of how busy the app is, not an exact figure.</p>
+    <h2>Finding Another Way</h2>
+    <p>A line's page has an alternatives section for when things go wrong. It can include:</p>
+    <ul>
+    <li><strong>Alternative service details</strong>, when RapidKL's notice mentions them, such as trains turning back at a station, where to change trains, or replacement buses. This is RapidKL's own information.</li>
+    <li><strong>A link to open Google Maps</strong> at the affected station, so you can plan a route to wherever you're going.</li>
+    <li><strong>A link to find a ride</strong> through a ride-hailing app (Grab).</li>
+    </ul>
+    <p>LaluanLive doesn't know where you are or where you're headed, and it doesn't plan routes itself. Those links hand you over to other apps and services, which have their own terms and privacy policies.</p>
+
+    <h2>People Using the App</h2>
+    <p>The header shows roughly how many people are using LaluanLive right now, across the whole app. It's a rough indicator of activity, not an exact or verified count.</p>
 
     <h2>About Your Data</h2>
     <ul>
-      <li>No account or personal information is required to use the App.</li>
-      <li>Reports and photos are automatically deleted a set time after the related issue is marked resolved.</li>
-      <li>A short explanation of how your data is handled is available anytime — tap the <strong>info icon</strong> in the header to view it.</li>
+    <li>No account or personal information is required. Your device gets a random anonymous ID, kept in a cookie and local storage, which is used to apply the limits above.</li>
+    <li>Reports and the incidents they belong to are deleted 48 hours after they're resolved. News is deleted 48 hours after it was published.</li>
+    <li>A permanent per-line summary of past incidents (dates and counts only) is kept, so the app can show how often a line has problems.</li>
+    <li>The <strong>How this works</strong> page in the app explains where updates come from, what each status means, how reporting and Running fine work, the anti-spam rules, and what data is kept.</li>
     </ul>
     <p>For full details, see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
 
     <h2>If Reporting Is Disabled on Your Device</h2>
-    <p>If several of your reports are removed by other riders for being incorrect or inappropriate, reporting may be temporarily disabled on your device. You can still view all line statuses and reports as normal. If you believe this happened in error, contact us at <a href="mailto:support@foooverse.com">support@foooverse.com</a>.</p>
+    <p>If 5 of your reports have been removed by other riders' flags, this device can no longer report or confirm that a line is running fine. You can still see everything else as normal. If you think this happened by mistake, email <a href="mailto:support@foooverse.com">support@foooverse.com</a>.</p>
 
-    <h2>Switching Between Light and Dark Mode</h2>
-    <p>The app automatically matches your device's light or dark setting when you first open it. Tap the <strong>sun/moon icon</strong> at the top of the screen to switch manually at any time — once you do, your choice is remembered and won't be overridden by your device's setting again.</p>
+    <h2>Light and Dark Mode</h2>
+    <p>The app matches your device's light or dark setting when you first open it. Use the theme toggle to switch manually at any time. Once you do, your choice is remembered and your device's setting won't override it again.</p>
 
     <h2>Getting Help</h2>
     <p>If you run into a problem or have feedback, see our <a href="support.html">Support page</a> or email <a href="mailto:support@foooverse.com">support@foooverse.com</a>.</p>
