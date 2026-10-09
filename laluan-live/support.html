@@ -21,6 +21,7 @@
   .faq-item h3 { margin: 0 0 8px; font-size: 15.5px; }
   .faq-item p, .faq-item ul { margin: 0; color: #2b2e28; font-size: 15px; }
   .faq-item ul { padding-left: 20px; margin-top: 6px; }
+  .faq-item p + p { margin-top: 8px; }
   .contact-box {
     background: var(--panel); border: 1px solid var(--border); border-left: 4px solid var(--accent);
     border-radius: 8px; padding: 20px; margin-top: 32px; text-align: center;
@@ -43,17 +44,17 @@
 
     <div class="faq-item">
       <h3>Do I need to create an account?</h3>
-      <p>No. You can view line statuses and submit reports without signing up. Your device gets an anonymous ID automatically, used only to apply fair limits like flagging and reporting caps — it isn't linked to your name or other personal details.</p>
+      <p>No. You can view line statuses and submit reports without signing up. Your device gets an anonymous ID automatically, used only to apply fair limits like reporting caps — it isn't linked to your name or other personal details.</p>
     </div>
 
     <div class="faq-item">
       <h3>Do I have to attach a photo to submit a report?</h3>
-      <p>No — photos aren't collected anymore. Just pick the problem, optionally add the station and a short note, and send it. Older reports that already had a photo still show it.</p>
+      <p>No — photos and notes aren't collected anymore. Just pick the problem, optionally choose the station, and send it. Older reports that already had a photo or a note still show it.</p>
     </div>
 
     <div class="faq-item">
       <h3>How long is my report kept?</h3>
-      <p>Reports and the incident they belong to are deleted 48 hours after the issue is marked resolved. News items are deleted 48 hours after publication. See our <a href="./privacy-policy.md">Privacy Policy</a> for details.</p>
+      <p>Reports and the incident they belong to are deleted 48 hours after the issue is marked resolved. News items are deleted 48 hours after publication. See our <a href="privacy-policy.html">Privacy Policy</a> for details.</p>
     </div>
 
     <div class="faq-item">
@@ -63,12 +64,39 @@
 
     <div class="faq-item">
       <h3>What does "Running fine" do?</h3>
-      <p>Tapping it on a line's page tells other riders things seem normal right now. It needs no note, doesn't show up in the feed, and can't be flagged. Enough "Running fine" taps can help an open rider report close sooner. You can use it once per line per hour.</p>
+      <p>Tapping it on a line's page tells other riders things seem normal right now. It needs no note and doesn't show up in the feed. When three different riders tap it, an open rider report on that line closes. You can use it once per line per hour.</p>
     </div>
 
     <div class="faq-item">
       <h3>Where do the official notices come from?</h3>
-      <p>From RapidKL's own service announcements, published in Malay and English — LaluanLive shows the English version. Notices can lag behind what's happening on the platform, so for time-critical decisions check RapidKL directly. When RapidKL announces service has been restored, the earlier open items for that line close.</p>
+      <p>From the service announcements RapidKL publishes on its website, which LaluanLive checks automatically every 10 minutes. Each notice is shown with a short English title, such as "Train delay: Kelana Jaya Line · Gombak". A notice about several lines shows on each of them, and a named station is marked on the line's page; tap "View official notice" for RapidKL's full announcement in Malay and English. Notices can lag behind what's happening on the platform, so for time-critical decisions check RapidKL directly. When RapidKL announces service has been restored, the earlier open items for that line close.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What does "Official RapidKL notices aren't coming through right now" mean?</h3>
+      <p>LaluanLive checks RapidKL's announcements every 10 minutes. If it hasn't managed to check for a while, this message appears so that a quiet board isn't mistaken for "all lines running normally". It's on our side, not your phone or connection, and there's nothing you need to do. Rider reports keep working the whole time, and the message clears by itself on the next successful check. For anything urgent, check RapidKL directly.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I get alerts when my line has a problem?</h3>
+      <p>Open your line's page and tap the bell, then allow notifications. You'll get an alert when that line becomes delayed, disrupted or halted, and when it's back to normal, even when LaluanLive is closed. You can follow several lines. On iPhone or iPad, add LaluanLive to your Home Screen first (in Safari: Share, then Add to Home Screen), open it from there, then tap the bell. This needs iOS 16.4 or later.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>I turned on alerts but I'm not getting any. What should I check?</h3>
+      <ul>
+      <li><strong>Nothing has changed yet.</strong> Alerts only come when a line you follow changes status, which on a good day may be never. They can arrive up to about 5 minutes after the change.</li>
+      <li><strong>The bell is on.</strong> Open the line's page and check the bell is filled in.</li>
+      <li><strong>iPhone:</strong> you must use LaluanLive from your Home Screen, not a Safari tab, and be on iOS 16.4 or later. In Settings → Notifications → LaluanLive, make sure Allow Notifications is on.</li>
+      <li><strong>Focus or Do Not Disturb</strong> may be holding alerts back. They follow your phone's own settings.</li>
+      <li><strong>Android or a computer:</strong> check that notifications are allowed for the LaluanLive site in your browser's settings.</li>
+      <li><strong>If you blocked notifications earlier</strong>, allow them again in your phone or browser settings, then tap the bell once more. If you removed LaluanLive from your Home Screen, add it again and turn the bell back on.</li>
+      </ul>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I stop alerts?</h3>
+      <p>Tap the bell again on each line you follow. Once no line is followed, your alert subscription is deleted. You can also turn off notifications for LaluanLive in your phone's settings at any time.</p>
     </div>
 
     <div class="faq-item">
@@ -82,13 +110,8 @@
     </div>
 
     <div class="faq-item">
-      <h3>Someone flagged my report and it disappeared — why?</h3>
-      <p>If enough different riders flag a report as incorrect, unrelated, spam, or sensitive, it's removed automatically. This keeps the feed reliable for everyone. If you believe your report was flagged unfairly, contact us and we'll take a look.</p>
-    </div>
-
-    <div class="faq-item">
-      <h3>Reporting seems to be disabled for me — what happened?</h3>
-      <p>If 5 of your reports have been removed through flagging, reporting and confirming "Running fine" are disabled on that device to keep the feed trustworthy. You can still view everything else normally. If you think this was a mistake, email us and we'll review it.</p>
+      <h3>How does a rider report go away?</h3>
+      <p>It closes on its own once the line has been quiet for 30 minutes, or sooner when three different riders tap "Running fine" on that line. It also closes when RapidKL announces that service is back. Reports can't be flagged or removed by other riders, and reporting is never blocked for a device; the only limits are one report per line every 5 minutes and up to 6 an hour.</p>
     </div>
 
     <div class="faq-item">
@@ -108,7 +131,7 @@
 
     <div class="faq-item">
       <h3>How do I request my data be deleted?</h3>
-      <p>Since LaluanLive doesn't collect personal information or require an account, there is typically nothing tied to you personally to delete beyond your own reports, which are removed automatically per our retention policy. If you have a specific concern, email us and we'll help.</p>
+      <p>Since LaluanLive doesn't collect personal information or require an account, there is typically nothing tied to you personally to delete beyond your own reports, which are removed automatically per our retention policy. If you turned on alerts, turning off the bell on every line deletes your alert subscription. If you have a specific concern, email us and we'll help.</p>
     </div>
 
     <div class="faq-item">
